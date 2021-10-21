@@ -7,6 +7,8 @@ const contacts = require("./contacts");
 
 const app = express();
 
+//Dummy comment ~ just to test CI pipeline works.
+
 app.use(express.static("public"));
 app.use(cors());
 
