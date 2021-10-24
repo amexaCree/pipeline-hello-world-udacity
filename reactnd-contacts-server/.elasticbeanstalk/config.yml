@@ -1,0 +1,19 @@
+branch-defaults:
+  lesson-2-exercise-1:
+    environment: test5
+environment-defaults:
+  test5:
+    branch: null
+    repository: null
+global:
+  application_name: test5
+  default_ec2_keyname: vockey
+  default_platform: Node.js 12 running on 64bit Amazon Linux 2
+  default_region: us-east-1
+  include_git_submodules: true
+  instance_profile: null
+  platform_name: null
+  platform_version: null
+  profile: eb-cli
+  sc: git
+  workspace_type: Application
