@@ -3,8 +3,8 @@ branch-defaults:
     environment: test5
 environment-defaults:
   test5:
-    branch: my-deploy
-    repository: pipeline-hello-world-udacity
+    branch: null
+    repository: null
 global:
   application_name: test5
   default_ec2_keyname: vockey
