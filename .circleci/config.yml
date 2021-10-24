@@ -18,11 +18,6 @@ jobs:
       # setup aws-cli and eb cli
       - aws-cli/setup
       - eb/setup
-      # - run:
-      #     name: hello
-      #     command: |
-      #       echo "hello-world"
-      # install dependencies in both apps
       - run:
           name: Front-End Install
           command: |

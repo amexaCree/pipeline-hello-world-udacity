@@ -1,5 +1,3 @@
-// const api = process.env.REACT_APP_CONTACTS_API_URL || 'http://reactnd-env.eba-9werppqp.us-east-2.elasticbeanstalk.com'
-// const api = process.env.REACT_APP_CONTACTS_API_URL || 'http://test4-env.eba-wsgshkvv.us-east-1.elasticbeanstalk.com'
 const api = process.env.REACT_APP_CONTACTS_API_URL || 'http://localhost:4000'
 
 let token = localStorage.token
