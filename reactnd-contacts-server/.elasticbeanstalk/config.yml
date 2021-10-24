@@ -1,6 +1,8 @@
 branch-defaults:
   lesson-2-exercise-1:
     environment: test5
+  my-deploy:
+    environment: test5
 environment-defaults:
   test5:
     branch: null
@@ -14,6 +16,6 @@ global:
   instance_profile: null
   platform_name: null
   platform_version: null
-  profile: eb-cli
+  profile: default
   sc: git
   workspace_type: Application
