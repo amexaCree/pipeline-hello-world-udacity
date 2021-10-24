@@ -13,6 +13,8 @@ class App extends Component {
       console.log(contacts)
       this.setState({ contacts })
     })
+    const source = ContactsAPI.getSource()
+    console.log("source:", source)
   }
   removeContact = (contact) => {
     this.setState((state) => ({

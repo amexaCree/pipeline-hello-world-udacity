@@ -1,4 +1,5 @@
 const express = require("express");
+const { Sequelize, DataTypes, Model } = require("sequelize");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const config = require("./config");
@@ -8,6 +9,35 @@ const contacts = require("./contacts");
 const app = express();
 
 //Dummy comment ~ just to test CI pipeline works.
+
+const sequelize = new Sequelize(
+  `postgres://${config.db_user}:${config.db_pwd}@${config.db_host}:5432/postgres`
+);
+
+class User extends Model {}
+
+User.init(
+  {
+    id: {
+      type: DataTypes.STRING,
+      primaryKey: true,
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    email: {
+      type: DataTypes.STRING,
+    },
+    avatarURL: {
+      type: DataTypes.STRING,
+    },
+  },
+  {
+    sequelize,
+    modelName: "User",
+  }
+);
 
 app.use(express.static("public"));
 app.use(cors());
@@ -30,11 +60,20 @@ app.use((req, res, next) => {
   }
 });
 
-app.get("/contacts", async (req, res) => {
+app.get("/contacts/test", async (req, res) => {
   res.send(contacts.defaultData.contacts.map((contact) => ({
     id: contact.id,
     name: contact.name,
     email: contact.email
+  })));
+});
+
+app.get("/contacts", async (req, res) => {
+  const users = await User.findAll();
+  res.send(users.map(({ dataValues }) => ({
+    id: dataValues.id,
+    name: dataValues.name,
+    email: dataValues.email
   })));
 });
 
@@ -56,9 +95,14 @@ app.post("/contacts", bodyParser.json(), (req, res) => {
 
 app.listen(config.port, async () => {
   try {
+    await sequelize.authenticate();
     console.log("Connection has been established successfully.");
     console.log("Server listening on port %s, Ctrl+C to stop", config.port);
+    await User.sync();
+    contacts.defaultData.contacts.forEach((contact) => {
+      User.findOrCreate({ where: { id: contact.id }, defaults: contact });
+    });
   } catch (error) {
-    console.error("Unable to establish the connection:", error);
+    console.error("Unable to connect to the database:", error);
   }
 });

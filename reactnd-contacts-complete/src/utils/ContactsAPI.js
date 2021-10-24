@@ -1,4 +1,4 @@
-const api = process.env.REACT_APP_CONTACTS_API_URL || 'http://reactnd-env.eba-9werppqp.us-east-2.elasticbeanstalk.com'
+const api = process.env.REACT_APP_CONTACTS_API_URL || 'http://localhost:4000'
 
 let token = localStorage.token
 
@@ -29,3 +29,7 @@ export const create = (body) =>
     },
     body: JSON.stringify(body)
   }).then(res => res.json())
+
+export const getSource = () => {
+  return `_${api}_`
+}
