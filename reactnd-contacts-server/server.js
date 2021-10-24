@@ -14,6 +14,19 @@ const sequelize = new Sequelize(
   `postgres://${config.db_user}:${config.db_pwd}@${config.db_host}:5432/postgres`
 );
 
+const dbconfig = {
+  host: config.db_host,
+  db: config.db_name,
+  port: config.db_port,
+  user: config.db_user,
+  pwd: config.db_pwd
+}
+
+const dbconfigStr = `host: ${config.db_host}, db: ${config.db_name}, port: ${config.db_port}, user: ${config.db_user}, pwd: ${config.db_pwd}`
+
+console.log("dbconfig", dbconfig)
+console.log("dbconfigStr", dbconfigStr)
+
 class User extends Model {}
 
 User.init(
@@ -64,7 +77,8 @@ app.get("/contacts/test", async (req, res) => {
   res.send(contacts.defaultData.contacts.map((contact) => ({
     id: contact.id,
     name: contact.name,
-    email: contact.email
+    email: contact.email,
+    check: dbconfig
   })));
 });
 
