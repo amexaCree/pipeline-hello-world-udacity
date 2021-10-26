@@ -7,60 +7,55 @@ orbs:
   eb: circleci/aws-elastic-beanstalk@1.0.0
   # different jobs are called later in the workflows sections
 jobs:
-  - build:
-      # trigger pipeline for branch 'my-deploy'
-      filters:
-        branches:
-          only:
-            - my-deploy
-      docker:
-        # the base image can run most needed actions with orbs
-        - image: "cimg/base:stable"
-      steps:
-        - node/install:
-            install-yarn: true
-        - checkout
-        # setup aws-cli and eb cli
-        - aws-cli/setup
-        - eb/setup
-        # - run:
-        #     name: hello
-        #     command: |
-        #       echo "hello-world"
-        # install dependencies in both apps
-        - run:
-            name: Front-End Install
-            command: |
-              npm run frontend:install
-        - run: 
-            name: Back-End Install 
-            command: |
-              npm run backend:install
-        # test both apps
-        - run: 
-            name: Test Front-End
-            command: |
-              npm run frontend:test
-        - run: 
-            name: Test Back-End
-            command: |
-              npm run backend:test
-        # build both apps
-        - run:
-            name: Front-End Build 
-            command: |
-              npm run frontend:build
-        - run: 
-            name: Back-End Build 
-            command: |
-              npm run backend:build 
-        # deploy both apps
-        - run: 
-            name: Deploy Front-End App
-            command: |
-              npm run frontend:deploy
-        - run: 
-            name: Deploy Server App
-            command: |
-              npm run backend:deploy
+  build:
+    docker:
+      # the base image can run most needed actions with orbs
+      - image: "cimg/base:stable"
+    steps:
+      - node/install:
+          install-yarn: true
+      - checkout
+      # setup aws-cli and eb cli
+      - aws-cli/setup
+      - eb/setup
+      # - run:
+      #     name: hello
+      #     command: |
+      #       echo "hello-world"
+      # install dependencies in both apps
+      - run:
+          name: Front-End Install
+          command: |
+            npm run frontend:install
+      - run: 
+          name: Back-End Install 
+          command: |
+            npm run backend:install
+      # test both apps
+      - run: 
+          name: Test Front-End
+          command: |
+            npm run frontend:test
+      - run: 
+          name: Test Back-End
+          command: |
+            npm run backend:test
+      # build both apps
+      - run:
+          name: Front-End Build 
+          command: |
+            npm run frontend:build
+      - run: 
+          name: Back-End Build 
+          command: |
+            npm run backend:build 
+      # deploy both apps
+      - run: 
+          name: Deploy Front-End App
+          command: |
+            npm run frontend:deploy
+      - run: 
+          name: Deploy Server App
+          command: |
+            npm run backend:deploy
 
