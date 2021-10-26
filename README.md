@@ -26,7 +26,7 @@ The api server interfaces with a postgreSQL database setup on AWS RDS
 
 
 ## CircleCI Pipeline
-The project was setup to be deployed automatically on circleci. It involves first an install step, then a build step for both the front-end and back-end applications then finally the front-end and back-end applications are deployed to their respective AWS services for production.
+The project was setup to be deployed automatically on circleci. It involves first an install step, and next a tests step, then a build step for both the front-end and back-end applications then finally the front-end and back-end applications are deployed to their respective AWS services for production.
 
 # Further Documentation
 The following files are included for further documentation in the 'docs' folder
