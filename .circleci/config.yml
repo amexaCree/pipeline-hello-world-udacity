@@ -10,9 +10,9 @@ jobs:
   build:
     # trigger pipeline for branch 'my-deploy'
     filters:
-        branches:
-          only:
-            - my-deploy
+      branches:
+        only:
+          - my-deploy
     docker:
       # the base image can run most needed actions with orbs
       - image: "cimg/base:stable"
