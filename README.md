@@ -1,5 +1,7 @@
 # Deploy a Full-stack Applicaiton Project
 
+[![<amexaCree>](https://circleci.com/gh/amexaCree/pipeline-hello-world-udacity/tree/my-deploy.svg?style=svg)](https://circleci.com/gh/amexaCree/pipeline-hello-world-udacity/?branch=my-deploy)
+
 In this project a contact applications frontend and backend is deployed unto AWS services by means of a pipeline built on the CircleCI.com infrastructure.
 
 The final deployed front-end application can be visited here:

@@ -8,6 +8,11 @@ orbs:
   # different jobs are called later in the workflows sections
 jobs:
   build:
+    # trigger pipeline for branch 'my-deploy'
+    filters:
+        branches:
+          only:
+            - my-deploy
     docker:
       # the base image can run most needed actions with orbs
       - image: "cimg/base:stable"
@@ -26,6 +31,15 @@ jobs:
           name: Back-End Install 
           command: |
             npm run backend:install
+      # test both apps
+      - run: 
+          name: Test Front-End
+          command: |
+            npm run frontend:test
+      - run: 
+          name: Test Back-End
+          command: |
+            npm run backend:test
       # build both apps
       - run:
           name: Front-End Build 
